@@ -5,6 +5,8 @@ import { NavLinks } from "@/constants";
 import { getCurrentUser } from "@/lib/session";
 
 import AuthProviders from "./AuthProviders";
+import ProfileMenu from "./ProfileMenu";
+import Button from "./Button";
 
 const Navbar = async () => {
   const session = await getCurrentUser();
@@ -26,15 +28,9 @@ const Navbar = async () => {
         {session?.user ? (
           <>
             {session?.user?.image && (
-              <Image
-                src={session.user.image}
-                width={40}
-                height={40}
-                className="rounded-full"
-                alt={session.user.name}
-              />
+              <ProfileMenu session={session} />
             )}
-            <Link href="/create-project">Share Work</Link>
+            <Button title='Share work' />
           </>
         ) : (
           <AuthProviders />
